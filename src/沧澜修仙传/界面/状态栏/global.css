@@ -1,0 +1,26 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* 功能语义配色 — 修仙暗流风 */
+  --c-primary: #d4a853;
+  --c-danger: #c0392b;
+  --c-affection: #e891b4;
+  --c-bg-deep: #0a080c;
+  --c-bg-panel: #121016;
+  --c-bg-card: #19161f;
+  --c-jade: #2d5a3d;
+  --c-jade-light: #3d7a53;
+  --c-mind: #8e7cc3;
+  --c-text: #d0ccd4;
+  --c-text-muted: #7a7580;
+  --c-border: #2a2530;
+  --c-border-active: #3d3550;
+
+  /* 字体 */
+  --font-display: 'Noto Serif SC', 'SimSun', serif;
+  --font-body: 'Microsoft YaHei', 'PingFang SC', sans-serif;
+}

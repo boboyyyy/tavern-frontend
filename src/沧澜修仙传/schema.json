@@ -1,0 +1,219 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "世界": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "当前时间": {
+          "default": "灾元1500年孢粉月9日",
+          "type": "string"
+        },
+        "当前地点": {
+          "default": "玄清宗山门外广场",
+          "type": "string"
+        },
+        "危机程度": {
+          "default": "无",
+          "type": "string"
+        },
+        "动向": {
+          "default": {},
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "类型": {
+                "default": "",
+                "type": "string"
+              },
+              "地点": {
+                "default": "",
+                "type": "string"
+              },
+              "描述": {
+                "default": "",
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "主角": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "等阶": {
+          "default": "凡人",
+          "type": "string"
+        },
+        "资质": {
+          "default": "未知",
+          "type": "string"
+        },
+        "灵根": {
+          "default": "未知",
+          "type": "string"
+        },
+        "势力": {
+          "default": "无",
+          "type": "string"
+        },
+        "生命": {
+          "default": 100,
+          "type": "number"
+        },
+        "魔力": {
+          "default": 100,
+          "type": "number"
+        },
+        "理智": {
+          "default": 100,
+          "type": "number"
+        },
+        "经验": {
+          "default": 0,
+          "type": "number"
+        },
+        "状态": {
+          "default": "无异常",
+          "type": "string"
+        },
+        "天赋": {
+          "default": {},
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "描述": {
+                "default": "",
+                "type": "string"
+              }
+            }
+          }
+        },
+        "技能": {
+          "default": {},
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "类型": {
+                "default": "",
+                "type": "string"
+              },
+              "等级": {
+                "default": "",
+                "type": "string"
+              },
+              "熟练度": {
+                "default": 0,
+                "type": "number"
+              },
+              "描述": {
+                "default": "",
+                "type": "string"
+              }
+            }
+          }
+        },
+        "物品": {
+          "default": {},
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "描述": {
+                "default": "",
+                "type": "string"
+              },
+              "数量": {
+                "default": 1,
+                "type": "number"
+              }
+            }
+          }
+        }
+      }
+    },
+    "蒋乐": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "堕落值": {
+          "default": 40,
+          "type": "number"
+        },
+        "好感度": {
+          "default": 50,
+          "type": "number"
+        },
+        "生命": {
+          "default": 100,
+          "type": "number"
+        },
+        "魔力": {
+          "default": 100,
+          "type": "number"
+        },
+        "理智": {
+          "default": 100,
+          "type": "number"
+        },
+        "心理描写": {
+          "default": "",
+          "type": "string"
+        }
+      }
+    },
+    "委托": {
+      "default": {},
+      "type": "object",
+      "propertyNames": {
+        "type": "string"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "难度": {
+            "default": "",
+            "type": "string"
+          },
+          "目标": {
+            "default": "",
+            "type": "string"
+          },
+          "奖励": {
+            "default": "",
+            "type": "string"
+          },
+          "引言": {
+            "default": "",
+            "type": "string"
+          }
+        }
+      }
+    },
+    "剧情提示": {
+      "default": [],
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}
