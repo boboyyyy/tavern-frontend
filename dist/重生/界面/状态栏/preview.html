@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="https://testingcf.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css">
+<script src="https://testingcf.jsdelivr.net/npm/vue@3.5.13/dist/vue.global.prod.js"></script>
+<style>
+:root {
+  --c-primary: #8b5cf6; --c-primary-dim: #7c3aed; --c-accent: #f59e0b;
+  --c-surface: #1e1b2e; --c-surface-alt: #252236; --c-text: #e2e0f0;
+  --c-text-muted: #908ca8; --c-border: #363154; --c-danger: #ef4444;
+  --c-success: #22c55e; --c-info: #3b82f6; --radius: 8px;
+  --font: 'Sarasa UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: var(--font); background: #12101a; color: var(--c-text); font-size: 13px; line-height: 1.5; padding: 16px; }
+#app { max-width: 420px; margin: 0 auto; }
+.card { background: var(--c-surface); border: 1px solid var(--c-border); border-radius: var(--radius); padding: 10px 12px; margin-bottom: 8px; }
+.row { display: flex; align-items: center; gap: 8px; }
+.between { display: flex; justify-content: space-between; align-items: center; }
+.stat-label { color: var(--c-text-muted); font-size: 11px; }
+.stat-value { font-weight: 600; }
+.btn-group { display: flex; gap: 0; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--c-border); }
+.btn-tab { flex: 1; padding: 10px 8px; text-align: center; background: var(--c-surface); color: var(--c-text-muted); border: none; cursor: pointer; font-family: var(--font); font-size: 14px; transition: all 0.2s; }
+.btn-tab.active { background: var(--c-primary-dim); color: #fff; }
+.btn-tab:hover:not(.active) { background: var(--c-surface-alt); }
+.quest-item { padding: 6px 0; border-bottom: 1px solid var(--c-border); cursor: pointer; transition: background 0.15s; }
+.quest-item:last-child { border-bottom: none; }
+.quest-item:hover { background: var(--c-surface-alt); margin: 0 -12px; padding-left: 12px; padding-right: 12px; border-radius: 4px; }
+.npc-card { padding: 8px 0; }
+.npc-card + .npc-card { border-top: 1px solid var(--c-border); }
+.favor-bar { height: 4px; background: var(--c-border); border-radius: 2px; margin-top: 4px; overflow: hidden; }
+.favor-fill { height: 100%; border-radius: 2px; transition: width 0.3s; }
+.empty-state { text-align: center; color: var(--c-text-muted); padding: 12px 0; font-size: 12px; }
+h3 { font-size: 14px; margin-bottom: 6px; color: var(--c-primary); }
+</style>
+</head>
+<body>
+<div id="app">
+  <!-- 系统信息 -->
+  <div class="card">
+    <h3><i class="fas fa-globe"></i> 系统</h3>
+    <div class="row" style="margin-bottom:4px">
+      <i class="fas fa-calendar" style="color:var(--c-text-muted);width:16px;text-align:center"></i>
+      <span class="stat-label">日期</span>
+      <span class="stat-value">2026/08/12</span>
+    </div>
+    <div class="row" style="margin-bottom:4px">
+      <i class="fas fa-clock" style="color:var(--c-text-muted);width:16px;text-align:center"></i>
+      <span class="stat-label">时间</span>
+      <span class="stat-value">清晨</span>
+    </div>
+    <div class="row">
+      <i class="fas fa-location-dot" style="color:var(--c-text-muted);width:16px;text-align:center"></i>
+      <span class="stat-label">位置</span>
+      <span class="stat-value">太虚剑宗 · 冰剑峰</span>
+    </div>
+  </div>
+
+  <!-- 主角面板 -->
+  <div class="card" id="panel-main">
+    <h3><i class="fas fa-user"></i> 主角状态</h3>
+    <div class="between" style="padding:4px 0">
+      <span><i class="fas fa-bolt" style="color:var(--c-accent);margin-right:6px"></i><span class="stat-label">修为</span></span>
+      <span class="stat-value">筑基圆满</span>
+    </div>
+    <div class="between" style="padding:4px 0">
+      <span><i class="fas fa-coins" style="color:var(--c-accent);margin-right:6px"></i><span class="stat-label">灵石</span></span>
+      <span class="stat-value">500</span>
+    </div>
+    <div class="between" style="padding:4px 0">
+      <span><i class="fas fa-star" style="color:var(--c-accent);margin-right:6px"></i><span class="stat-label">贡献点</span></span>
+      <span class="stat-value">150</span>
+    </div>
+  </div>
+
+  <!-- 任务列表 -->
+  <div class="card">
+    <div class="between" style="margin-bottom:4px">
+      <span><i class="fas fa-scroll" style="color:var(--c-accent);margin-right:6px"></i><span style="font-weight:600">活跃任务</span></span>
+      <span class="stat-label">2 个任务</span>
+    </div>
+    <div class="quest-item" onclick="this.querySelector('.detail').style.display=this.querySelector('.detail').style.display==='none'?'block':'none'">
+      <div class="between">
+        <span><span style="color:#6b7280;font-weight:600;margin-right:6px">[凡级]</span>采集灵草</span>
+        <span style="color:var(--c-success);font-size:11px">进行中</span>
+      </div>
+      <div class="detail" style="display:none;margin-top:6px;font-size:12px;color:var(--c-text-muted)">
+        <div><i class="fas fa-user-tie" style="width:16px;margin-right:4px"></i>宗门执事</div>
+        <div><i class="fas fa-map-pin" style="width:16px;margin-right:4px"></i>宗门后山</div>
+        <div><i class="fas fa-hourglass" style="width:16px;margin-right:4px"></i>2026/08/15 截止</div>
+      </div>
+    </div>
+    <div class="quest-item" onclick="this.querySelector('.detail').style.display=this.querySelector('.detail').style.display==='none'?'block':'none'">
+      <div class="between">
+        <span><span style="color:#3b82f6;font-weight:600;margin-right:6px">[灵级]</span>猎杀妖兽</span>
+        <span style="color:var(--c-accent);font-size:11px">已接</span>
+      </div>
+      <div class="detail" style="display:none;margin-top:6px;font-size:12px;color:var(--c-text-muted)">
+        <div><i class="fas fa-user-tie" style="width:16px;margin-right:4px"></i>临仙城坊主</div>
+        <div><i class="fas fa-map-pin" style="width:16px;margin-right:4px"></i>十万大山</div>
+        <div><i class="fas fa-hourglass" style="width:16px;margin-right:4px"></i>2026/08/20 截止</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 角色面板 -->
+  <div class="card" id="panel-npc" style="display:none">
+    <h3><i class="fas fa-users"></i> 角色状态</h3>
+
+    <div class="npc-card">
+      <div class="between">
+        <span style="font-weight:600"><i class="fas fa-snowflake" style="margin-right:6px;color:var(--c-primary)"></i>慕清寒</span>
+        <span style="font-size:12px;color:var(--c-text-muted)"><i class="fas fa-map-pin" style="margin-right:3px"></i>冰剑峰</span>
+      </div>
+      <div class="between" style="margin-top:4px">
+        <span style="font-size:11px;color:var(--c-text-muted)">好感度</span>
+        <span style="font-size:12px;font-weight:600;color:var(--c-accent)">55 · 友好</span>
+      </div>
+      <div class="favor-bar"><div class="favor-fill" style="width:55%;background:var(--c-accent)"></div></div>
+      <div style="margin-top:6px;font-size:12px;color:var(--c-text-muted);font-style:italic">
+        <i class="fas fa-quote-left" style="font-size:10px;margin-right:3px;opacity:0.5"></i>
+        沈怀瑾今日入门，这次我不会再签那份驱逐令。
+      </div>
+    </div>
+
+    <div class="npc-card">
+      <div class="between">
+        <span style="font-weight:600"><i class="fas fa-sun" style="margin-right:6px;color:var(--c-primary)"></i>江映月</span>
+        <span style="font-size:12px;color:var(--c-text-muted)"><i class="fas fa-map-pin" style="margin-right:3px"></i>讲经堂</span>
+      </div>
+      <div class="between" style="margin-top:4px">
+        <span style="font-size:11px;color:var(--c-text-muted)">好感度</span>
+        <span style="font-size:12px;font-weight:600;color:var(--c-accent)">52 · 友好</span>
+      </div>
+      <div class="favor-bar"><div class="favor-fill" style="width:52%;background:var(--c-accent)"></div></div>
+      <div style="margin-top:6px;font-size:12px;color:var(--c-text-muted);font-style:italic">
+        <i class="fas fa-quote-left" style="font-size:10px;margin-right:3px;opacity:0.5"></i>
+        他今天会不会来听早课？上次端茶他都没接。
+      </div>
+    </div>
+
+    <div class="npc-card">
+      <div class="between">
+        <span style="font-weight:600"><i class="fas fa-moon" style="margin-right:6px;color:var(--c-primary)"></i>夜凝霜</span>
+        <span style="font-size:12px;color:var(--c-text-muted)"><i class="fas fa-map-pin" style="margin-right:3px"></i>演武场</span>
+      </div>
+      <div class="between" style="margin-top:4px">
+        <span style="font-size:11px;color:var(--c-text-muted)">好感度</span>
+        <span style="font-size:12px;font-weight:600;color:var(--c-info)">32 · 冷淡</span>
+      </div>
+      <div class="favor-bar"><div class="favor-fill" style="width:32%;background:var(--c-info)"></div></div>
+      <div style="margin-top:6px;font-size:12px;color:var(--c-text-muted);font-style:italic">
+        <i class="fas fa-quote-left" style="font-size:10px;margin-right:3px;opacity:0.5"></i>
+        他在练剑，我在暗处。他应该不知道。
+      </div>
+    </div>
+
+    <div class="npc-card">
+      <div class="between">
+        <span style="font-weight:600"><i class="fas fa-crown" style="margin-right:6px;color:var(--c-primary)"></i>殷九歌</span>
+        <span style="font-size:12px;color:var(--c-text-muted)"><i class="fas fa-map-pin" style="margin-right:3px"></i>幽玄魔宫</span>
+      </div>
+      <div class="between" style="margin-top:4px">
+        <span style="font-size:11px;color:var(--c-text-muted)">好感度</span>
+        <span style="font-size:12px;font-weight:600;color:var(--c-accent)">60 · 友好</span>
+      </div>
+      <div class="favor-bar"><div class="favor-fill" style="width:60%;background:var(--c-accent)"></div></div>
+      <div style="margin-top:6px;font-size:12px;color:var(--c-text-muted);font-style:italic">
+        <i class="fas fa-quote-left" style="font-size:10px;margin-right:3px;opacity:0.5"></i>
+        那个笨蛋现在在做什么。
+      </div>
+    </div>
+  </div>
+
+  <!-- 切换按钮 -->
+  <div class="btn-group">
+    <button class="btn-tab active" id="btn-main" onclick="switchTab('main')">
+      <i class="fas fa-user" style="margin-right:4px"></i>主角
+    </button>
+    <button class="btn-tab" id="btn-npc" onclick="switchTab('npc')">
+      <i class="fas fa-users" style="margin-right:4px"></i>角色
+    </button>
+  </div>
+</div>
+
+<script>
+function switchTab(tab) {
+  document.getElementById('panel-main').style.display = tab === 'main' ? '' : 'none';
+  document.getElementById('panel-npc').style.display = tab === 'npc' ? '' : 'none';
+  document.getElementById('btn-main').className = 'btn-tab' + (tab === 'main' ? ' active' : '');
+  document.getElementById('btn-npc').className = 'btn-tab' + (tab === 'npc' ? ' active' : '');
+}
+</script>
+</body>
+</html>

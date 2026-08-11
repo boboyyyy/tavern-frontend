@@ -1,0 +1,165 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "系统": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "日期": {
+          "default": "",
+          "type": "string"
+        },
+        "时间段": {
+          "default": "清晨",
+          "type": "string"
+        },
+        "当前位置": {
+          "default": "太虚剑宗",
+          "type": "string"
+        },
+        "当前场景": {
+          "default": "弟子居所",
+          "type": "string"
+        },
+        "任务阶段": {
+          "default": "浏览",
+          "type": "string",
+          "enum": [
+            "浏览",
+            "执行",
+            "结算"
+          ]
+        }
+      }
+    },
+    "主角": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "修为": {
+          "default": "筑基圆满",
+          "type": "string"
+        },
+        "宗门贡献点": {
+          "default": 0,
+          "type": "number"
+        },
+        "灵石": {
+          "default": 100,
+          "type": "number"
+        }
+      }
+    },
+    "任务列表": {
+      "default": {},
+      "type": "object",
+      "propertyNames": {
+        "type": "string"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "名称": {
+            "type": "string"
+          },
+          "等级": {
+            "type": "string"
+          },
+          "发布者": {
+            "type": "string"
+          },
+          "地点": {
+            "type": "string"
+          },
+          "截止时间": {
+            "type": "string"
+          },
+          "状态": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "名称",
+          "等级",
+          "发布者",
+          "地点",
+          "截止时间",
+          "状态"
+        ]
+      }
+    },
+    "慕清寒": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "好感度": {
+          "default": 50,
+          "type": "number"
+        },
+        "当前位置": {
+          "default": "冰剑峰",
+          "type": "string"
+        },
+        "当前想法": {
+          "default": "",
+          "type": "string"
+        }
+      }
+    },
+    "江映月": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "好感度": {
+          "default": 50,
+          "type": "number"
+        },
+        "当前位置": {
+          "default": "冰剑峰",
+          "type": "string"
+        },
+        "当前想法": {
+          "default": "",
+          "type": "string"
+        }
+      }
+    },
+    "夜凝霜": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "好感度": {
+          "default": 30,
+          "type": "number"
+        },
+        "当前位置": {
+          "default": "冰剑峰",
+          "type": "string"
+        },
+        "当前想法": {
+          "default": "",
+          "type": "string"
+        }
+      }
+    },
+    "殷九歌": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "好感度": {
+          "default": 60,
+          "type": "number"
+        },
+        "当前位置": {
+          "default": "幽玄魔宫",
+          "type": "string"
+        },
+        "当前想法": {
+          "default": "",
+          "type": "string"
+        }
+      }
+    }
+  }
+}
